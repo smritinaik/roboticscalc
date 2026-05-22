@@ -1,10 +1,10 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
 const COLORS = {
-  darkGreen: '#0A3323',
+  darkGreen: '#194d39',
   mossGreen: '#839958',
   beige: '#F7F4D5',
-  rosyBrown: '#D3968C',
+  rosyBrown: '#fbd0ff',
   midnightGreen: '#105666',
 };
 
