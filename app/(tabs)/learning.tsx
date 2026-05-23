@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Colors sampled from the pet care schedule & activity lists
 const COLORS = {
@@ -27,9 +28,12 @@ export default function Learning() {
         Learn the basic formulas used in gear and motor calculations.
       </Text>
 
-      {/* Card 1: Using the first pastel color */}
+      {/* Card 1: Gear Ratio */}
       <View style={[styles.card, { backgroundColor: COLORS.cardPastels[1] }]}>
-        <Text style={styles.cardTitle}>⚙️ Gear Ratio</Text>
+        <View style={styles.titleRow}>
+          <MaterialCommunityIcons name="cog-outline" size={26} color={COLORS.inkBlack} style={styles.iconStyle} />
+          <Text style={styles.cardTitle}>Gear Ratio</Text>
+        </View>
 
         <Text style={styles.formula}>
           Gear Ratio = Teeth of Driven Gear ÷ Teeth of Driver Gear
@@ -41,9 +45,12 @@ export default function Learning() {
         </Text>
       </View>
 
-      {/* Card 2: Using the second pastel color */}
+      {/* Card 2: Output RPM */}
       <View style={[styles.card, { backgroundColor: COLORS.cardPastels[2] }]}>
-        <Text style={styles.cardTitle}>🚀 Output RPM (Speed)</Text>
+        <View style={styles.titleRow}>
+          <MaterialCommunityIcons name="speedometer" size={26} color={COLORS.inkBlack} style={styles.iconStyle} />
+          <Text style={styles.cardTitle}>Output RPM (Speed)</Text>
+        </View>
 
         <Text style={styles.formula}>
           Output RPM = Input RPM ÷ Gear Ratio
@@ -55,9 +62,12 @@ export default function Learning() {
         </Text>
       </View>
 
-      {/* Card 3: Using the third pastel color */}
+      {/* Card 3: Output Torque */}
       <View style={[styles.card, { backgroundColor: COLORS.cardPastels[3] }]}>
-        <Text style={styles.cardTitle}>💪 Output Torque</Text>
+        <View style={styles.titleRow}>
+          <MaterialCommunityIcons name="arm-flex-outline" size={26} color={COLORS.inkBlack} style={styles.iconStyle} />
+          <Text style={styles.cardTitle}>Output Torque</Text>
+        </View>
 
         <Text style={styles.formula}>
           Output Torque = Gear Ratio × Input Motor Torque
@@ -119,11 +129,20 @@ const styles = StyleSheet.create({
     elevation: 0, // Disables default Android blur shadow
   },
 
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+
+  iconStyle: {
+    marginRight: 8,
+  },
+
   cardTitle: {
     fontSize: 20,
     fontWeight: '800',
     color: COLORS.inkBlack,
-    marginBottom: 10,
   },
 
   formula: {

@@ -1,8 +1,9 @@
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const COLORS = {
-  bgCream: '#FDFBF7',         // Warm retro cream overall background
+  bgCream: '#FCE7F3',         // Warm retro cream overall background
   inkBlack: '#000000',        // Bold outlines and text
   cardMint: '#A7F3D0',        // Vibrant pastel green for hero card
   cardYellow: '#FEF08A',      // Pastel yellow for functions card
@@ -50,7 +51,7 @@ export default function HomeScreen() {
         <Text style={styles.sectionTitle}>Key Functions</Text>
         
         <View style={styles.listItem}>
-          <Text style={styles.listEmoji}>⚙️</Text>
+          <MaterialCommunityIcons name="cog-outline" size={26} color={COLORS.inkBlack} style={styles.listIcon} />
           <View style={styles.listTextContainer}>
             <Text style={styles.listTitle}>GEAR RATIOS</Text>
             <Text style={styles.listSub}>Calculate speed & torque differences.</Text>
@@ -58,7 +59,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.listItem}>
-          <Text style={styles.listEmoji}>🚀</Text>
+          <MaterialCommunityIcons name="speedometer" size={26} color={COLORS.inkBlack} style={styles.listIcon} />
           <View style={styles.listTextContainer}>
             <Text style={styles.listTitle}>OUTPUT RPM</Text>
             <Text style={styles.listSub}>Find rotational limits easily.</Text>
@@ -66,7 +67,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.listItem}>
-          <Text style={styles.listEmoji}>💪</Text>
+          <MaterialCommunityIcons name="arm-flex-outline" size={26} color={COLORS.inkBlack} style={styles.listIcon} />
           <View style={styles.listTextContainer}>
             <Text style={styles.listTitle}>MOTOR TORQUE</Text>
             <Text style={styles.listSub}>Measure rotational turning force.</Text>
@@ -219,8 +220,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
 
-  listEmoji: {
-    fontSize: 24,
+  listIcon: {
     marginRight: 12,
   },
 
