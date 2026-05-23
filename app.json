@@ -1,49 +1,46 @@
 {
   "expo": {
-    "name": "roboticscalc",
+    "name": "Robotics Calculator",
     "slug": "roboticscalc",
     "version": "1.0.0",
     "orientation": "portrait",
-
     "icon": "./assets/images/icon.png",
-
     "scheme": "roboticscalc",
     "userInterfaceStyle": "automatic",
-
     "ios": {
       "icon": "./assets/images/icon.png",
       "supportsTablet": true
     },
-
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png"
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#FCE7F3"
       },
-      "predictiveBackGestureEnabled": false
+      "package": "com.smritinaik015.roboticscalc"
     },
-
     "web": {
       "output": "static",
       "favicon": "./assets/images/icon.png"
     },
-
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "android": {
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 76
-          }
+          "backgroundColor": "#FCE7F3",
+          "image": "./assets/images/icon.png",
+          "imageWidth": 120
         }
       ]
     ],
-
     "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8f7f1d59-7546-48bd-9a72-3fde500eb842"
+      }
     }
   }
 }

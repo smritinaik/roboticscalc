@@ -14,6 +14,8 @@ const COLORS = {
   white: '#FFFFFF',          // High contrast clean input surface
   cardYellow: '#FEF08A',     // Standout calculator display background
   cardMint: '#A7F3D0',       // Mint background color for action buttons
+  cardCoral: '#FCA5A5',      // High prominence coral fill accent for backspace
+  themeBlue: '#97c6ff',      // Neo-Brutalist Sky Blue matching your theme profile
 };
 
 export default function Calculator() {
@@ -76,6 +78,16 @@ export default function Calculator() {
 
   // Custom Keypad Logic
   const handleKeyPress = (val: string) => {
+    // Helper to guard against multiple decimals in a single input field
+    const currentVal = () => {
+      if (activeField === 'driver') return driver;
+      if (activeField === 'driven') return driven;
+      if (activeField === 'rpm') return rpm;
+      return torque;
+    };
+
+    if (val === '.' && currentVal().includes('.')) return;
+
     if (activeField === 'driver') setDriver((prev) => prev + val);
     if (activeField === 'driven') setDriven((prev) => prev + val);
     if (activeField === 'rpm') setRpm((prev) => prev + val);
@@ -87,6 +99,14 @@ export default function Calculator() {
     if (activeField === 'driven') setDriven((prev) => prev.slice(0, -1));
     if (activeField === 'rpm') setRpm((prev) => prev.slice(0, -1));
     if (activeField === 'torque') setTorque((prev) => prev.slice(0, -1));
+  };
+
+  const handleClearAll = () => {
+    setDriver('');
+    setDriven('');
+    setRpm('');
+    setTorque('');
+    setResult('0.00');
   };
 
   return (
@@ -183,6 +203,16 @@ export default function Calculator() {
             ))}
           </View>
         ))}
+
+        {/* Full-width Neo-Brutalist Blue Clear Action Row */}
+        <View style={styles.keypadRow}>
+          <TouchableOpacity 
+            style={[styles.keyItem, styles.clearKey]} 
+            onPress={handleClearAll}
+          >
+            <Text style={styles.clearKeyText}>CLEAR ALL VALUES</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
     </ScrollView>
@@ -207,7 +237,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 20,
     justifyContent: 'center',
-    alignItems: 'flex-end', // Aligns answers to the right side like desktop layouts
+    alignItems: 'flex-end',
     paddingHorizontal: 24,
     borderWidth: 2.5,
     borderColor: COLORS.inkBlack,
@@ -259,7 +289,7 @@ const styles = StyleSheet.create({
   activeInput: {
     backgroundColor: '#FFFFFF',
     borderColor: COLORS.inkBlack,
-    borderStyle: 'dashed', // Visually indicates which box receives the custom numpad inputs
+    borderStyle: 'dashed',
   },
 
   buttonRow: {
@@ -325,7 +355,14 @@ const styles = StyleSheet.create({
   },
 
   backspaceKey: {
-    backgroundColor: '#FCA5A5', // High prominence coral fill accent for the delete function
+    backgroundColor: COLORS.cardCoral,
+  },
+
+  clearKey: {
+    width: '100%',
+    height: 50,
+    backgroundColor: COLORS.themeBlue, // Transformed background color to blue accent 
+    marginTop: 4,
   },
 
   keyText: {
@@ -336,5 +373,12 @@ const styles = StyleSheet.create({
 
   backspaceText: {
     fontSize: 18,
+  },
+
+  clearKeyText: {
+    fontSize: 14,
+    fontWeight: '900',
+    color: COLORS.inkBlack, // Bold black text over blue surface for premium contrast scaling
+    letterSpacing: 1,
   },
 });
