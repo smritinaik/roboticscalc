@@ -1,12 +1,12 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
+// Colors strictly sampled from your new pet care inspiration image
 const COLORS = {
-  darkGreen: '#0A3323',
-  mossGreen: '#839958',
-  beige: '#F7F4D5',
-  rosyBrown: '#ffd6d0',
-  midnightGreen: '#105666',
+  bgSoftPink: '#FCE7F3',     // The soft pastel pink background from the image
+  inkBlack: '#000000',       // Deep solid black for active items, borders, and buttons
+  mutedGray: '#A1A1AA',      // Soft gray for unselected states
+  white: '#FFFFFF',
 };
 
 export default function TabLayout() {
@@ -16,48 +16,45 @@ export default function TabLayout() {
         headerShown: false,
 
         sceneStyle: {
-          backgroundColor: COLORS.rosyBrown, // Global screen background
+          backgroundColor: COLORS.bgSoftPink, // Global screen background matching the image
         },
 
         tabBarShowLabel: true,
-
-        tabBarActiveTintColor: COLORS.beige,
-        tabBarInactiveTintColor: 'rgba(247,244,213,0.55)',
+        tabBarActiveTintColor: COLORS.inkBlack,
+        tabBarInactiveTintColor: COLORS.mutedGray,
 
         tabBarStyle: {
           position: 'absolute',
           left: 18,
           right: 18,
           bottom: 25,
-          height: 78,
+          height: 76,
 
-          backgroundColor: COLORS.darkGreen,
+          backgroundColor: COLORS.white,
+          borderRadius: 24, // Clean, rounded design matching the cards
 
-          borderRadius: 28,
-          borderTopWidth: 0,
+          // Thick high-contrast borders
+          borderWidth: 2.5,
+          borderColor: COLORS.inkBlack,
+          borderTopWidth: 2.5,
+          borderTopColor: COLORS.inkBlack,
 
-          borderWidth: 1,
-          borderColor: 'rgba(247,244,213,0.08)',
-
-          shadowColor: COLORS.midnightGreen,
-          shadowOffset: {
-            width: 0,
-            height: 12,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 18,
-
-          elevation: 20,
+          // Crisp, solid offset shadow
+          shadowColor: COLORS.inkBlack,
+          shadowOffset: { width: 4, height: 4 },
+          shadowOpacity: 1,
+          shadowRadius: 0,
+          elevation: 0,
         },
 
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: '600',
-          marginBottom: 8,
+          fontWeight: '700',
+          marginBottom: 10,
         },
 
         tabBarItemStyle: {
-          paddingTop: 8,
+          paddingTop: 10,
         },
       }}
     >

@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import {
-  View,
+  ScrollView,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
+  View,
 } from 'react-native';
 
 const COLORS = {
-  darkGreen: '#0A3323',
-  mossGreen: '#839958',
-  beige: '#F7F4D5',
-  rosyBrown: '#D3968C',
-  midnightGreen: '#105666',
+  bgSoftPink: '#FCE7F3',     // Main background color
+  inkBlack: '#000000',       // Bold lines, text, and primary actions
+  white: '#FFFFFF',          // High contrast clean input surface
+  cardYellow: '#FEF08A',     // High energy background for the calculation output
+  textMuted: '#4B5563',      // Subheading tints
 };
 
 export default function Calculator() {
@@ -24,20 +25,19 @@ export default function Calculator() {
   const [result, setResult] = useState('Result will appear here');
 
   const getRatio = () => {
-    const d1 = Number(driver);
-    const d2 = Number(driven);
+    const driverTeeth = Number(driver);
+    const drivenTeeth = Number(driven);
 
-    if (!d1 || !d2) {
-      setResult('Enter valid teeth values');
+    if (!driverTeeth || !drivenTeeth) {
+      setResult('Enter valid teeth values ⚙️');
       return null;
     }
 
-    return d1 / d2;
+    return drivenTeeth / driverTeeth;
   };
 
   const calculateRatio = () => {
     const ratio = getRatio();
-
     if (ratio !== null) {
       setResult(`Gear Ratio = ${ratio.toFixed(2)}`);
     }
@@ -45,32 +45,45 @@ export default function Calculator() {
 
   const calculateRPM = () => {
     const ratio = getRatio();
+    if (ratio === null) return;
 
-    if (ratio !== null) {
-      const output = Number(rpm) / ratio;
-
-      setResult(`Output RPM = ${output.toFixed(2)}`);
+    const motorRPM = Number(rpm);
+    if (!motorRPM) {
+      setResult('Enter Motor RPM 🚀');
+      return;
     }
+
+    const outputRPM = motorRPM / ratio;
+    setResult(`Output RPM = ${outputRPM.toFixed(2)} RPM`);
   };
 
   const calculateTorque = () => {
     const ratio = getRatio();
+    if (ratio === null) return;
 
-    if (ratio !== null) {
-      const output = ratio * Number(torque);
-
-      setResult(`Output Torque = ${output.toFixed(2)}`);
+    const motorTorque = Number(torque);
+    if (!motorTorque) {
+      setResult('Enter Motor Torque 💪');
+      return;
     }
+
+    const outputTorque = ratio * motorTorque;
+    setResult(`Output Torque = ${outputTorque.toFixed(2)}`);
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView 
+      style={styles.mainWrapper} 
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.heading}>Enter Teeth</Text>
 
       <View style={styles.row}>
         <TextInput
           style={styles.input}
           placeholder="Driver"
+          placeholderTextColor="#71717A"
           keyboardType="numeric"
           value={driver}
           onChangeText={setDriver}
@@ -79,6 +92,7 @@ export default function Calculator() {
         <TextInput
           style={styles.input}
           placeholder="Driven"
+          placeholderTextColor="#71717A"
           keyboardType="numeric"
           value={driven}
           onChangeText={setDriven}
@@ -91,6 +105,7 @@ export default function Calculator() {
         <TextInput
           style={styles.input}
           placeholder="RPM"
+          placeholderTextColor="#71717A"
           keyboardType="numeric"
           value={rpm}
           onChangeText={setRpm}
@@ -99,56 +114,54 @@ export default function Calculator() {
         <TextInput
           style={styles.input}
           placeholder="Torque"
+          placeholderTextColor="#71717A"
           keyboardType="numeric"
           value={torque}
           onChangeText={setTorque}
         />
       </View>
 
+      {/* Chunky Action Buttons */}
       <View style={styles.buttonRow}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={calculateRatio}
-        >
+        <TouchableOpacity style={styles.button} onPress={calculateRatio}>
           <Text style={styles.buttonText}>Ratio</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={calculateRPM}
-        >
+        <TouchableOpacity style={styles.button} onPress={calculateRPM}>
           <Text style={styles.buttonText}>RPM</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={calculateTorque}
-        >
+        <TouchableOpacity style={styles.button} onPress={calculateTorque}>
           <Text style={styles.buttonText}>Torque</Text>
         </TouchableOpacity>
       </View>
 
+      {/* Result Display Pane */}
       <View style={styles.resultBox}>
-        <Text style={styles.resultText}>
-          {result}
-        </Text>
+        <Text style={styles.resultText}>{result}</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  mainWrapper: {
     flex: 1,
+    backgroundColor: COLORS.bgSoftPink,
+  },
+
+  container: {
     padding: 24,
+    paddingTop: 48,
+    paddingBottom: 120, // Prevents content clipping behind absolute navbar
   },
 
   heading: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: COLORS.darkGreen,
-    marginBottom: 16,
-    marginTop: 20,
+    fontSize: 22,
+    fontWeight: '900',
+    color: COLORS.inkBlack,
+    marginBottom: 12,
+    marginTop: 10,
   },
 
   row: {
@@ -159,79 +172,80 @@ const styles = StyleSheet.create({
 
   input: {
     width: '47%',
-    backgroundColor: COLORS.beige,
-
+    backgroundColor: COLORS.white,
     paddingVertical: 14,
     paddingHorizontal: 16,
-
-    borderRadius: 18,
-
+    borderRadius: 16,
     fontSize: 16,
+    fontWeight: '600',
+    color: COLORS.inkBlack,
 
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
+    // Thick Neo-brutalist border
+    borderWidth: 2.5,
+    borderColor: COLORS.inkBlack,
 
-    elevation: 2,
+    // Subtle flat offset shadow so typing fields feel tactile
+    shadowColor: COLORS.inkBlack,
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 0,
   },
 
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 14,
   },
 
   button: {
     width: '30%',
-
-    backgroundColor: COLORS.darkGreen,
-
+    backgroundColor: COLORS.inkBlack, // Solid black button pill matching reference
     paddingVertical: 14,
-
-    borderRadius: 30,
-
+    borderRadius: 24,
     alignItems: 'center',
+    justifyContent: 'center',
+
+    borderWidth: 1,
+    borderColor: COLORS.inkBlack,
+
+    // Pop shadow styling
+    shadowColor: COLORS.inkBlack,
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.3, // Softened offset opacity slightly for actions so it's less jarring to view in groups
+    shadowRadius: 0,
   },
 
   buttonText: {
-    color: COLORS.beige,
-    fontWeight: '700',
+    color: COLORS.white,
+    fontWeight: '800',
     fontSize: 14,
   },
 
   resultBox: {
-    marginTop: 35,
-
-    height: 160,
-
-    backgroundColor: COLORS.beige,
-
+    marginTop: 32,
+    height: 140,
+    backgroundColor: COLORS.cardYellow, // High prominence accent color panel
     borderRadius: 24,
-
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 24,
 
-    padding: 20,
+    borderWidth: 2.5,
+    borderColor: COLORS.inkBlack,
 
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-
-    elevation: 4,
+    shadowColor: COLORS.inkBlack,
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 0,
   },
 
   resultText: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: COLORS.midnightGreen,
+    fontSize: 20,
+    fontWeight: '900',
+    color: COLORS.inkBlack,
     textAlign: 'center',
+    lineHeight: 28,
   },
 });

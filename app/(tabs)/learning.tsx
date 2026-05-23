@@ -1,16 +1,24 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
+// Colors sampled from the pet care schedule & activity lists
 const COLORS = {
-  darkGreen: '#0A3323',
-  mossGreen: '#839958',
-  beige: '#F7F4D5',
-  rosyBrown: '#D3968C',
-  midnightGreen: '#105666',
+  bgSoftPink: '#FCE7F3',     // Global background
+  inkBlack: '#000000',       // Bold borders and headers
+  textMuted: '#4B5563',      // Subheading body text
+
+  // Array of pastel colors from the reference layout to make cards pop individually
+  cardPastels: [
+    '#FCE7F3', // Soft Pink (Vet Visit)
+    '#FEF08A', // Soft Yellow (Grooming)
+    '#BAE6FD', // Soft Blue (Medicines)
+    '#DCFCE7', // Soft Green (Vaccination)
+  ],
 };
 
 export default function Learning() {
   return (
     <ScrollView
+      style={styles.mainWrapper}
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
@@ -19,12 +27,12 @@ export default function Learning() {
         Learn the basic formulas used in gear and motor calculations.
       </Text>
 
-      {/* Card 1 */}
-      <View style={styles.card}>
+      {/* Card 1: Using the first pastel color */}
+      <View style={[styles.card, { backgroundColor: COLORS.cardPastels[1] }]}>
         <Text style={styles.cardTitle}>⚙️ Gear Ratio</Text>
 
         <Text style={styles.formula}>
-          Gear Ratio = Teeth of Driver Gear ÷ Teeth of Driven Gear
+          Gear Ratio = Teeth of Driven Gear ÷ Teeth of Driver Gear
         </Text>
 
         <Text style={styles.description}>
@@ -33,8 +41,8 @@ export default function Learning() {
         </Text>
       </View>
 
-      {/* Card 2 */}
-      <View style={styles.card}>
+      {/* Card 2: Using the second pastel color */}
+      <View style={[styles.card, { backgroundColor: COLORS.cardPastels[2] }]}>
         <Text style={styles.cardTitle}>🚀 Output RPM (Speed)</Text>
 
         <Text style={styles.formula}>
@@ -47,8 +55,8 @@ export default function Learning() {
         </Text>
       </View>
 
-      {/* Card 3 */}
-      <View style={styles.card}>
+      {/* Card 3: Using the third pastel color */}
+      <View style={[styles.card, { backgroundColor: COLORS.cardPastels[3] }]}>
         <Text style={styles.cardTitle}>💪 Output Torque</Text>
 
         <Text style={styles.formula}>
@@ -65,59 +73,78 @@ export default function Learning() {
 }
 
 const styles = StyleSheet.create({
+  mainWrapper: {
+    flex: 1,
+    backgroundColor: COLORS.bgSoftPink,
+  },
+
   container: {
     padding: 20,
-    paddingTop: 40,
-    paddingBottom: 120, // space for bottom tab bar
+    paddingTop: 48,
+    paddingBottom: 120, // Keeps cards safely viewable above the absolute TabBar
   },
 
   heading: {
-    fontSize: 30,
-    fontWeight: '800',
-    color: COLORS.darkGreen,
+    fontSize: 28,
+    fontWeight: '900', // Maximum chunkiness for headers
+    color: COLORS.inkBlack,
     marginBottom: 8,
   },
 
   subHeading: {
     fontSize: 15,
-    color: COLORS.midnightGreen,
-    marginBottom: 25,
+    fontWeight: '500',
+    lineHeight: 22,
+    color: COLORS.textMuted,
+    marginBottom: 28,
   },
 
   card: {
-    backgroundColor: COLORS.beige,
     borderRadius: 24,
     padding: 20,
-    marginBottom: 18,
+    marginBottom: 20,
 
-    shadowColor: '#000',
+    // Thick Neo-Brutalist / Cartoon border styling
+    borderWidth: 2.5,
+    borderColor: COLORS.inkBlack,
+
+    // Hard flat shadow styling (No feathering/blur)
+    shadowColor: COLORS.inkBlack,
     shadowOffset: {
-      width: 0,
+      width: 4,
       height: 4,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 0, // Disables default Android blur shadow
   },
 
   cardTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: COLORS.darkGreen,
-    marginBottom: 12,
+    fontSize: 20,
+    fontWeight: '800',
+    color: COLORS.inkBlack,
+    marginBottom: 10,
   },
 
   formula: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: COLORS.midnightGreen,
-    marginBottom: 10,
-    lineHeight: 28,
+    fontSize: 16,
+    fontWeight: '700',
+    color: COLORS.inkBlack,
+    backgroundColor: 'rgba(255, 255, 255, 0.45)', // Slight white overlay tint to highlight formula text
+    padding: 10,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    borderColor: COLORS.inkBlack,
+    overflow: 'hidden',
+    marginBottom: 12,
+    lineHeight: 24,
   },
 
   description: {
-    fontSize: 15,
-    color: '#444',
-    lineHeight: 22,
+    fontSize: 14,
+    fontWeight: '500',
+    color: COLORS.inkBlack,
+    lineHeight: 20,
+    opacity: 0.85,
   },
 });
