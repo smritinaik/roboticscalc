@@ -1,56 +1,152 @@
-# Welcome to your Expo app 👋
+# 🤖 Robotics Calculator App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern and interactive Robotics Calculator App built using **React Native**, **Expo**, and **TypeScript**.
+This application helps students, robotics enthusiasts, and beginners quickly calculate important robotics and mechanical values using essential engineering formulas.
 
-## Get started
+The app features a clean UI, real-time calculations, and an easy-to-use mobile experience designed specifically for robotics learning and experimentation.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+# ✨ Features
 
-2. Start the app
+* ⚙ Gear Ratio Calculator
+* 🔄 RPM Calculations
+* 📏 Wheel & Distance Calculations
+* ⚡ Speed & Motion Formulas
+* 🧮 Robotics Engineering Utilities
+* 📱 Mobile-Friendly UI
+* 🌙 Modern Dark Theme Design
+* ⚡ Fast Real-Time Results
+* 🎨 Clean & Interactive User Interface
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+# 📸 Screens
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+* Home Screen
+* Formula Input Screen
+* Calculation Result Screen
+* Robotics Formula Sections
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+# 🛠 Tech Stack
 
-When you're ready, run:
+## Frontend
 
-```bash
-npm run reset-project
+* React Native
+* Expo
+* TypeScript
+
+## UI & Styling
+
+* React Native StyleSheet
+* Custom Theme Design
+
+## Navigation
+
+* Expo Router
+
+---
+
+# 📂 Project Structure
+
+```bash id="ovl3lp"
+app/
+│
+├── index.tsx
+├── calculator.tsx
+├── formulas.tsx
+│
+components/
+│
+├── FormulaCard.tsx
+├── InputField.tsx
+│
+constants/
+│
+└── colors.ts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-### Other setup steps
+# 🚀 Getting Started
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## 1. Clone the Repository
 
-## Learn more
+```bash id="x4m6k1"
+git clone https://github.com/your-username/robotics-calculator-app.git
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 2. Install Dependencies
 
-## Join the community
+```bash id="xpdv1v"
+npm install
+```
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 3. Start the Development Server
+
+```bash id="z75djt"
+npx expo start
+```
+
+---
+
+# 📦 Build APK
+
+This project uses **EAS Build** for Android APK generation.
+
+```bash id="3t0n67"
+eas build --platform android --profile preview
+```
+
+---
+
+# 🎯 Purpose of the App
+
+The Robotics Calculator App was created to simplify common robotics and mechanical calculations for:
+
+* Students
+* Robotics Beginners
+* STEM Learners
+* Robotics Workshop Participants
+
+The app makes formulas easier to understand and apply during practical robotics projects.
+
+---
+
+# 🎨 Design Philosophy
+
+The application focuses on:
+
+* Simplicity
+* Fast calculations
+* Beginner-friendly interaction
+* Premium dark UI
+* Clear formula visualization
+
+---
+
+# 🔮 Future Improvements
+
+* Unit Converter
+* Sensor Calculations
+* Motor Torque Calculator
+* Physics Simulation
+* Formula Explanation Section
+* Save Calculation History
+* Robotics Learning Notes
+
+---
+
+# 👨‍💻 Developer
+
+Built with ❤️ using React Native & Expo.
+
+Created by Smriti.
+
+---
