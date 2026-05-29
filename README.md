@@ -1,5 +1,11 @@
 # 🤖 Robotics Calculator App
-
+<p align="center">
+  <img 
+    src="./assets/images/banner.jpg" 
+    alt="TaskFlow Banner"
+    width="100%"
+  />
+</p>
 A modern and interactive Robotics Calculator App built using **React Native**, **Expo**, and **TypeScript**.
 This application helps students, robotics enthusiasts, and beginners quickly calculate important robotics and mechanical values using essential engineering formulas.
 
